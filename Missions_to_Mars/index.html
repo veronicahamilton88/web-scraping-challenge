@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Facts</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Learn more about...</h1>
+      <h3>Earth's sister planet.</h3>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+    </div>
+    <img src="{{ mars.space_images_url }}" alt="Mars">
+    <h2>Top news article about Mars:</h2>
+    <h3> {{ mars.news_title }}</h3>
+    <p> {{ mars.news_p }}</p>
+  </div>
+  </div>
+</body>
+
+</html>
