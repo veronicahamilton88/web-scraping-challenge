@@ -62,7 +62,7 @@ def scrape_info():
 
     table=pd.read_html(space_facts_url)
     df=table[0]
-    df.columns=['Attributes', 'values']
+    df.columns=['Description', 'Value']
     html_table=df.to_html()
     html_table=html_table.replace('\n', '')
     mars["facts"] = html_table
