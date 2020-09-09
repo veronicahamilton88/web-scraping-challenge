@@ -31,10 +31,7 @@ def scrape_info():
 
     # Get the most recent news paragraph
     news_p = mars_news_soup.find('div', class_='article_teaser_body')
-    mars["news_p"]=news_p[1].text
-
-    # Close the browser after scraping
-    browser.quit()
+    mars["news_p"]=news_p.text
 
 
     # Pass the space images URL
@@ -63,7 +60,7 @@ def scrape_info():
     html = browser.html
     mars_facts_soup = bs(html, "html.parser")
 
-    table=pd.read_html(url)
+    table=pd.read_html(space_facts_url)
     df=table[0]
     df.columns=['Attributes', 'values']
     html_table=df.to_html()
@@ -75,16 +72,17 @@ def scrape_info():
     browser.visit(hemisphere_url)
 
     hemisphere_image_url=[]
-        links = browser.find_by_css("a.product-item h3")
-        for link in range(len(links)):
-            hemispheres={}
-            browser.find_by_css("a.product-item h3")[link].click()
-            element = browser.find_link_by_text('Sample').first
-            hemispheres["img_url"]=element["href"]
-            hemispheres["title"]=browser.find_by_css("h2.title").text
-            hemisphere_image_url.append(hemispheres)
-            browser.back()
+    links = browser.find_by_css("a.product-item h3")
+    for link in range(len(links)):
+        hemispheres={}
+        browser.find_by_css("a.product-item h3")[link].click()
+        element = browser.find_link_by_text('Sample').first
+        hemispheres["img_url"]=element["href"]
+        hemispheres["title"]=browser.find_by_css("h2.title").text
+        hemisphere_image_url.append(hemispheres)
+        browser.back()
         mars["hemisphere"] = hemisphere_image_url
+    
     # Close the browser after scraping
     browser.quit()
 
